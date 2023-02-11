@@ -32,6 +32,10 @@ function zad1() {
 };
 //zad1()
 //zad2()
+//zad3()
+//zad4()
+//zad5()
+//zad6()
 function zad2() {
     const amount = Number(prompt("Upišite broj osoba koje želite unijeti"));
     const arrrayPeople = []
@@ -66,14 +70,35 @@ function zad2() {
         console.log(element)
     })
 }
-class Fruit{
-    constructor(fruitName, fruitColor, cookable){
-        this.fruitName=fruitName;
-        this.fruitColor=fruitColor;
-        this.cookable=cookable;
+class Fruit {
+    constructor(fruitName, fruitColor, readyForSale) {
+        this.fruitName = fruitName;
+        this.fruitColor = fruitColor;
+        this.readyForSale = readyForSale;
     }
 }
-function zad3(){
+let fruits = [
+    new Fruit('banana', 'yellow', false),
+    new Fruit('apple', 'green', false),
+    new Fruit('orange', 'orange', false),
+    new Fruit('pear', 'green', false),
+    new Fruit('avocado', 'green', false),
+    new Fruit('tomato', 'red', true),
+    new Fruit('cherry', 'cherry', true),
+    new Fruit('mango', 'mango', true),
+    new Fruit('lemon', 'yellow', true),
+];
+let multiColoredFruits = [
+    new Fruit('banana', ['yellow'], false),
+    new Fruit('apple', ['green', 'yellow'], false),
+    new Fruit('orange', ['orange'], false),
+    new Fruit('kiwi', ['brown', 'green'], false),
+    new Fruit('watermelon', ['green', 'red'], false),
+    new Fruit('lemon', ['green', 'yellow'], false),
+    new Fruit('dragonfruit', ['green', 'red'], false),
+    new Fruit('blueberries', ['blue'], false),
+]
+function zad3() {
     let fruits = [
         new Fruit('banana', 'yellow', false),
         new Fruit('apple', 'green', false),
@@ -84,12 +109,58 @@ function zad3(){
         new Fruit('cherry', 'cherry', false),
         new Fruit('mango', 'mango', false),
     ];
-    const filteredFruits = fruits.filter((fruit)=>{
-        if (fruit.fruitName===fruit.fruitColor)
+    const filteredFruits = fruits.filter((fruit) => {
+        if (fruit.fruitName === fruit.fruitColor)
             return true
         return false
     });
-    filteredFruits.forEach((fruit)=>{
+    filteredFruits.forEach((fruit) => {
         console.log(fruit)
     })
 }
+function zad4() {
+    fruits.forEach((element) => {
+        console.log(element)
+    })
+    console.log("Izmijenjeno");
+    const changedColor = multiColoredFruits.map((element) => {
+        if (element.fruitColor.includes("yellow"))
+            element.fruitColor[element.fruitColor.indexOf("yellow")] = "red"
+        return element
+    })
+    changedColor.forEach((element) => {
+        console.log(element)
+    })
+}
+function zad5() {
+    const yellowFruits = multiColoredFruits.filter((element) => {
+        return element.fruitColor.includes("yellow")
+    })
+    yellowFruits.forEach((element) => {
+        console.log(element)
+    })
+}
+console.log("Kosarica")
+fruits.forEach((element) => {
+    console.log(element)
+})
+console.log("")
+let unreadyItems = [];
+fruits.forEach((element) => {
+    if (!element.readyForSale)
+        unreadyItems.push(fruits.indexOf(element))
+})
+console.log("Nespremno")
+unreadyItems.forEach((element) => {
+    console.log(element)
+})
+let readyItems = [...fruits]
+for (const index of unreadyItems) {
+    readyItems.splice(index, 1)
+}
+console.log("Preporucena kupnja")
+readyItems.forEach((element) => {
+    console.log(element)
+})
+
+
