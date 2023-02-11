@@ -1,3 +1,31 @@
+class Fruit {
+    constructor(fruitName, fruitColor, readyForSale) {
+        this.fruitName = fruitName;
+        this.fruitColor = fruitColor;
+        this.readyForSale = readyForSale;
+    }
+}
+let fruits = [
+    new Fruit('banana', 'yellow', false),
+    new Fruit('apple', 'green', false),
+    new Fruit('orange', 'orange', false),
+    new Fruit('pear', 'green', false),
+    new Fruit('avocado', 'green', false),
+    new Fruit('tomato', 'red', true),
+    new Fruit('cherry', 'cherry', true),
+    new Fruit('mango', 'mango', true),
+    new Fruit('lemon', 'yellow', true),
+];
+let multiColoredFruits = [
+    new Fruit('banana', ['yellow'], false),
+    new Fruit('apple', ['green', 'yellow'], false),
+    new Fruit('orange', ['orange'], false),
+    new Fruit('kiwi', ['brown', 'green'], false),
+    new Fruit('watermelon', ['green', 'red'], false),
+    new Fruit('lemon', ['green', 'yellow'], false),
+    new Fruit('dragonfruit', ['green', 'red'], false),
+    new Fruit('blueberries', ['blue'], false),
+]
 function zad1() {
     const arrrayPeople = [];
     let loop = true;
@@ -30,12 +58,6 @@ function zad1() {
     };
     console.log(differencePerson);
 };
-//zad1()
-//zad2()
-//zad3()
-//zad4()
-//zad5()
-//zad6()
 function zad2() {
     const amount = Number(prompt("Upišite broj osoba koje želite unijeti"));
     const arrrayPeople = []
@@ -70,34 +92,6 @@ function zad2() {
         console.log(element)
     })
 }
-class Fruit {
-    constructor(fruitName, fruitColor, readyForSale) {
-        this.fruitName = fruitName;
-        this.fruitColor = fruitColor;
-        this.readyForSale = readyForSale;
-    }
-}
-let fruits = [
-    new Fruit('banana', 'yellow', false),
-    new Fruit('apple', 'green', false),
-    new Fruit('orange', 'orange', false),
-    new Fruit('pear', 'green', false),
-    new Fruit('avocado', 'green', false),
-    new Fruit('tomato', 'red', true),
-    new Fruit('cherry', 'cherry', true),
-    new Fruit('mango', 'mango', true),
-    new Fruit('lemon', 'yellow', true),
-];
-let multiColoredFruits = [
-    new Fruit('banana', ['yellow'], false),
-    new Fruit('apple', ['green', 'yellow'], false),
-    new Fruit('orange', ['orange'], false),
-    new Fruit('kiwi', ['brown', 'green'], false),
-    new Fruit('watermelon', ['green', 'red'], false),
-    new Fruit('lemon', ['green', 'yellow'], false),
-    new Fruit('dragonfruit', ['green', 'red'], false),
-    new Fruit('blueberries', ['blue'], false),
-]
 function zad3() {
     let fruits = [
         new Fruit('banana', 'yellow', false),
@@ -140,27 +134,77 @@ function zad5() {
         console.log(element)
     })
 }
-console.log("Kosarica")
-fruits.forEach((element) => {
-    console.log(element)
-})
-console.log("")
-let unreadyItems = [];
-fruits.forEach((element) => {
-    if (!element.readyForSale)
-        unreadyItems.push(fruits.indexOf(element))
-})
-console.log("Nespremno")
-unreadyItems.forEach((element) => {
-    console.log(element)
-})
-let readyItems = [...fruits]
-for (const index of unreadyItems) {
-    readyItems.splice(index, 1)
+function zad6() {
+    console.log("Kosarica")
+    fruits.forEach((element) => {
+        console.log(element)
+    })
+    console.log("")
+    let unreadyItems = [];
+    fruits.forEach((element) => {
+        if (!element.readyForSale)
+            unreadyItems.push(fruits.indexOf(element))
+    })
+    console.log("Nespremno")
+    unreadyItems.forEach((element) => {
+        console.log(element)
+    })
+    let readyItems = [...fruits]
+    for (const index of unreadyItems) {
+        readyItems.splice(index, 1)
+    }
+    console.log("Preporucena kupnja")
+    readyItems.forEach((element) => {
+        console.log(element)
+    })
 }
-console.log("Preporucena kupnja")
-readyItems.forEach((element) => {
-    console.log(element)
-})
+function zad7() {
 
+    fruits.sort((a, b) => {
+        if (a.fruitName > b.fruitName)
+            return 1
+        else if (b.fruitName > a.fruitName)
+            return -1
+        return 0
+    })
+    fruits.forEach((element) => {
+        console.log(element)
+    })
+}
+function gauss(firstNumber, secondNumber, sum) {
+    firstNumber += 1
+    secondNumber -= 1
+    sum += firstNumber + secondNumber
+    if (firstNumber >= secondNumber) {
+        if (number % 2 != 0)
+            sum -= secondNumber
+        console.log(sum);
 
+        return sum
+    }
+    else
+        gauss(firstNumber, secondNumber, sum)
+}
+function zad8() {
+
+    const number = Number(prompt("Upišite završni broj"))
+    let secondNumber = number;
+    let firstNumber = 0;
+    let sum = Math.floor(number / 2)
+    gauss(firstNumber, secondNumber, sum)
+    //Note: please do not create infinite recursion
+}
+function zad9() {
+    const input = prompt("Upšite niz riječ odvojenih razmacima").split(" ")
+    const csvInput = input.toString()
+    console.log(csvInput)
+}
+zad1()
+zad2()
+zad3()
+zad4()
+zad5()
+zad6()
+zad7()
+zad8()
+zad9()
