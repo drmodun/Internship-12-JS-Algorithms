@@ -202,7 +202,6 @@ function zad9() {
     const csvInput = input.toString()
     console.log(csvInput)
 }
-/*
 console.log("zad1")
 zad1()
 console.log("zad2")
@@ -220,4 +219,4 @@ zad7()
 console.log("zad8")
 zad8()
 console.log("zad9")
-zad9()*/
+zad9();
