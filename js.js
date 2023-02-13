@@ -117,7 +117,9 @@ function zad4() {
         console.log(element)
     })
     console.log("Izmijenjeno");
-    const changedColor = multiColoredFruits.map((element) => {
+    const changedColor = multiColoredFruits.map((item) => {
+        //not sure if this part is requiered but I saw it was messing with the fifth taks so I had to put it here
+        const element = JSON.parse(JSON.stringify(item))
         if (element.fruitColor.includes("yellow"))
             element.fruitColor[element.fruitColor.indexOf("yellow")] = "red"
         return element
@@ -143,15 +145,15 @@ function zad6() {
     let unreadyItems = [];
     fruits.forEach((element) => {
         if (!element.readyForSale)
-            unreadyItems.push(fruits.indexOf(element))
+            unreadyItems.push(element)
     })
     console.log("Nespremno")
     unreadyItems.forEach((element) => {
-        console.log(element)
+        console.log(fruits.indexOf(element))
     })
     let readyItems = [...fruits]
-    for (const index of unreadyItems) {
-        readyItems.splice(index, 1)
+    for (const element of unreadyItems) {
+        readyItems.splice(readyItems.indexOf(element), 1)
     }
     console.log("Preporucena kupnja")
     readyItems.forEach((element) => {
@@ -171,7 +173,16 @@ function zad7() {
         console.log(element)
     })
 }
-function gauss(firstNumber, secondNumber, sum) {
+function zad8() {
+
+    const number = Number(prompt("Upišite završni broj"))
+    let secondNumber = number;
+    let firstNumber = 0;
+    let sum = Math.floor(number / 2)
+    gauss(firstNumber, secondNumber, sum, number)
+    //Note: please do not create infinite recursion
+}
+function gauss(firstNumber, secondNumber, sum, number) {
     firstNumber += 1
     secondNumber -= 1
     sum += firstNumber + secondNumber
@@ -183,22 +194,15 @@ function gauss(firstNumber, secondNumber, sum) {
         return sum
     }
     else
-        gauss(firstNumber, secondNumber, sum)
+        gauss(firstNumber, secondNumber, sum, number)
 }
-function zad8() {
 
-    const number = Number(prompt("Upišite završni broj"))
-    let secondNumber = number;
-    let firstNumber = 0;
-    let sum = Math.floor(number / 2)
-    gauss(firstNumber, secondNumber, sum)
-    //Note: please do not create infinite recursion
-}
 function zad9() {
     const input = prompt("Upšite niz riječ odvojenih razmacima").split(" ")
     const csvInput = input.toString()
     console.log(csvInput)
 }
+/*
 console.log("zad1")
 zad1()
 console.log("zad2")
@@ -216,4 +220,4 @@ zad7()
 console.log("zad8")
 zad8()
 console.log("zad9")
-zad9()
+zad9()*/
